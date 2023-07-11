@@ -1,0 +1,100 @@
+<canvas width="1800" height="900"> </canvas>
+
+<script>
+    
+    function telaLimpa() {
+        pincel.fillStyle = 'lightgrey';
+        pincel.fillRect(0, 0, 1800, 900);
+        paleta(cores);
+    }
+
+    function movimentoDoMouse(atributos) {
+        x = atributos.layerX - tela.offsetLeft;
+        y = atributos.layerY - tela.offsetTop;
+        // console.log(atributos);
+        desenha();
+    }
+
+    function paleta(cores) {
+        var numCores = 0;
+        for (var i = 0; i < cores.length; i++) {
+            if (i + 1 == cores.length) {
+                pincel.fillStyle = 'white';
+                pincel.fillRect(numCores * 50, 0, tamanhoPaleta, tamanhoPaleta);
+                pincel.stroke = 'black';
+                pincel.strokeRect(numCores * 50, 0, tamanhoPaleta, tamanhoPaleta);
+                numCores++;
+
+            } else {
+                pincel.fillStyle = cores[i];
+                pincel.fillRect(numCores * 50, 0, tamanhoPaleta, tamanhoPaleta);
+                pincel.stroke = 'black';
+                pincel.strokeRect(numCores * 50, 0, tamanhoPaleta, tamanhoPaleta);
+                numCores++;
+            }
+
+        }
+
+    }
+
+    function escolheCor(atributos) {
+        var clickX = atributos.pageX - tela.offsetLeft;
+        var clickY = atributos.pageY - tela.offsetTop;
+        for (var i = 1; i <= cores.length; i++) {
+            if (clickX < (tamanhoPaleta * i) && (clickY < tamanhoPaleta)) {
+
+                if (i == cores.length) {
+                    telaLimpa();
+
+                } else {
+                    corEscolhida = cores[i - 1];
+                    break;
+
+                }
+
+            }
+        }
+
+    }
+
+    function desenha() {
+        // console.log(x, y, corEscolhida)        
+        validaDesenho();
+        if (validade) {
+            pincel.fillStyle = corEscolhida;
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2 * Math.PI);
+            pincel.fill();
+            paleta(cores);
+        }
+    }
+
+    function validaDesenho() {
+        tela.onmousedown = function () {
+            validade = true;
+        }
+
+        tela.onmouseup = function () {
+            validade = false;
+        }
+    }
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var x;
+    var y;
+    var cores = ['blue', 'green', 'red', 'orange', 'purple', 'hotpink', 'black', 'yellow', 'cyan', '']; 
+    //ultima cor sempre deve ser '', pois é para limpar a tela
+    var tamanhoPaleta = 50;
+    var corEscolhida;
+    var validade = false;
+
+    telaLimpa();
+
+    tela.onmousemove = movimentoDoMouse;
+
+    tela.onclick = escolheCor;
+
+
+
+</script>

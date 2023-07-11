@@ -1,0 +1,31 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+
+    var ano2015 = [50, 25, 20, 5]
+    var ano2016 = [65, 20, 13, 2]
+    var cores = ['blue', 'green', 'yellow', 'red'];
+
+    function desenhaBarra(x, y, ano, cores, anoTxt) {
+        var tela = document.querySelector("canvas");
+        var pincel = tela.getContext("2d");
+        var contadorAnos = 0;
+
+        for (var cont = 0; cont < ano.length; cont++) {
+            contadorAnos += ano[cont]
+            pincel.fillStyle = cores[cont]
+
+            if (cont == 0) {
+                pincel.fillRect(x, y, 50, (50 + ano[cont]))
+
+            } else {
+
+                pincel.fillRect(x, (y + contadorAnos), 50, (ano[cont]))
+            }
+        }
+    }
+
+    desenhaBarra(50, 50, ano2015, cores, 2015);
+
+
+</script>

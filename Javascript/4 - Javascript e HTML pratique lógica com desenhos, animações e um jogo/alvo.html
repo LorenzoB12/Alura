@@ -1,0 +1,50 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var raio = 10;
+    var xAlvo = 300;
+    var yAlvo = 200;
+
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    desenhaCirculo(xAlvo, yAlvo, raio + 20, 'red'); // maior círculo
+    desenhaCirculo(xAlvo, yAlvo, raio + 10, 'white');
+    pincel.fillStyle = 'red';
+    pincel.fillRect(xAlvo - 10, yAlvo - 10, 20, 20); // menor circulo
+
+    function dispara(evento) {
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        // lógica de acerto?
+
+        console.log(x, y)
+        if ((x <= xAlvo + raio) &&
+        (x >= xAlvo - raio) &&
+        (y <= yAlvo + raio) &&
+        (y >= yAlvo - raio)) {
+            alert('Você acertou o alvo!!!')
+
+        } else {
+            alert('Você errou o alvo!!!')
+        }
+
+    }
+
+    tela.onclick = dispara;
+
+</script>

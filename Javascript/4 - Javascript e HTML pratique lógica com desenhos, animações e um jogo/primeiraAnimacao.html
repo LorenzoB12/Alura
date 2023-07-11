@@ -1,0 +1,37 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    function desenhaCirculo(x, y, raio, cor) {
+        pincel.clearRect(0, 0, 600, 400);
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+
+    }
+
+    var cores = ['green', 'lightgreen', 'blue', 'lightblue', 'pink', 'red']
+    var x = 0;
+    var i = 0;
+
+    function atualizaTela() {
+        while (i > 5){
+            i = i - 5
+        }
+        
+        desenhaCirculo(x, 20, 10, cores[i]);
+        
+        x++;
+        i = x
+        
+        if (x >= 600){
+            x = 1;
+        } 
+    }
+
+    setInterval(atualizaTela, 100)
+
+</script>

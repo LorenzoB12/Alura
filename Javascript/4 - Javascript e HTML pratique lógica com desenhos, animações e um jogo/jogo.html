@@ -1,0 +1,68 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var x = 0;
+    var y = 0;
+    var acertos = 0;
+    var erros = 0;
+
+    function desenhaAlvo(x, y) {
+        pincel.fillStyle = 'red';
+        pincel.beginPath();
+        pincel.arc(x, y, 30, 0, 2 * Math.PI);
+        pincel.fill();
+
+        pincel.fillStyle = 'white';
+        pincel.beginPath();
+        pincel.arc(x, y, 20, 0, 2 * Math.PI);
+        pincel.fill();
+
+        pincel.fillStyle = 'red';
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function alvoAleatorio(){
+        x = Math.round(Math.random() * 570);
+        while (x < 30){
+            x = Math.round(Math.random() * 570);
+        }
+        y = Math.round(Math.random() * 370);
+        //console.log(y)
+        while (y < 30){
+            y = Math.round(Math.random() * 370);
+        }
+        //console.log(x, y);
+        pincel.clearRect(0, 0, 600, 400);
+        desenhaAlvo(x, y);
+
+        tela.onclick = analisaMira;
+    }
+
+    function analisaMira(atributos){
+        //console.log(atributos);
+        var miraX = atributos.layerX - tela.offsetLeft;
+        var miraY = atributos.layerY - tela.offsetTop;
+        console.log(miraX, miraY);
+        console.log(x, y);
+
+        if ((x + 10) >= miraX && 
+            (x - 10) <= miraX &&
+            (y + 10) >= miraY &&
+            (y - 10) <= miraY){
+                alert('Você acertou o alvo');
+                acertos += 1;
+        } else{
+            alert('Você errou o alvo.');
+            erros += 1;
+        }
+    }
+
+    setInterval(alvoAleatorio, 5000);
+
+
+
+</script>

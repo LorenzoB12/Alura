@@ -1,0 +1,41 @@
+<canvas width="6000" height="4000"> </canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var stats2015 = [50, 25, 20, 5];
+    var stats2016 = [65, 20, 13, 2];
+    var navegadores = ['Chrome', 'Firefox', 'Safari', 'Outros']
+    var cores = ['lightblue', 'orange', 'green', 'pink']
+
+    function desenhaGrafico(stats, cores, x) {
+        var alturaInicial = 100;
+        var contNavegadores = navegadores.length
+
+        for (var cont = 0; cont < stats.length; cont++) {
+            largura = 500 * x
+            alturaCerta = stats[cont] * 10
+            pincel.fillStyle = cores[cont];
+            pincel.fillRect(largura, alturaInicial, 150, alturaCerta);
+            pincel.stroke = cores[cont];
+            pincel.strokeRect(largura, alturaInicial, 150, alturaCerta);
+            alturaInicial += alturaCerta;
+
+            desenhaTexto(navegadores[cont], largura + 170, (alturaInicial * 0.995))
+        }
+
+    }
+
+    function desenhaTexto(texto, x, y) {
+        var tela = document.querySelector("canvas");
+        var pincel = tela.getContext("2d");
+
+        pincel.fillStyle = "black";
+        pincel.font = '18px Georgia';
+        pincel.fillText(texto, x, y);
+    }
+
+    desenhaGrafico(stats2015, cores, 1);
+    desenhaGrafico(stats2016, cores, 2);
+
+</script>
