@@ -1,9 +1,11 @@
 package br.com.busolli.lorenzo.patterns1.loja;
 
-public class LojaException extends RuntimeException{
+public class LojaException extends RuntimeException {
 
-    public LojaException(String mensagem){
-        super(mensagem);
-    }
+	private static final long serialVersionUID = 1L;
+
+	public LojaException(String mensagem) {
+		super(mensagem);
+	}
 
 }

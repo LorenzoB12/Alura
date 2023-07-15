@@ -1,24 +1,25 @@
 package br.com.busolli.lorenzo.patterns1.loja.orcamento.situacao;
 
-import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
-
 import java.math.BigDecimal;
 
-public class EmAnalise extends SituacaoOrcamento{
-    private BigDecimal aliquotaDescontoExtra = new BigDecimal("0.05");
+import br.com.busolli.lorenzo.patterns1.loja.LojaException;
+import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
 
-    @Override
-    public BigDecimal calcularDescontoExtra(Orcamento orcamento) {
-        return orcamento.getValor().multiply(aliquotaDescontoExtra);
-    }
+public class EmAnalise extends SituacaoOrcamento {
 
-    @Override
-    public void aprovar(Orcamento orcamento) {
-        orcamento.setSituacao(new Aprovado());
-    }
+	@Override
+	public BigDecimal calcularDescontoExtra(Orcamento orcamento) {
+		return orcamento.getValor().multiply(new BigDecimal("0.05"));
+	}
 
-    @Override
-    public void reprovar(Orcamento orcamento) {
-        orcamento.setSituacao(new Reprovado());
-    }
+	@Override
+	public void aprovar(Orcamento orcamento) throws LojaException {
+		orcamento.setSituacao(new Aprovado());
+	}
+	
+	@Override
+	public void reprovar(Orcamento orcamento) throws LojaException {
+		orcamento.setSituacao(new Reprovado());
+	}
+
 }

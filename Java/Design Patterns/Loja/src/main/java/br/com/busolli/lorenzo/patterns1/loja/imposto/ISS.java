@@ -1,16 +1,17 @@
 package br.com.busolli.lorenzo.patterns1.loja.imposto;
 
-import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
-
 import java.math.BigDecimal;
 
-public class ISS implements Imposto{
+import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
 
-    private final BigDecimal aliquota = new BigDecimal("0.06");
+public class ISS extends Imposto {
 
-    @Override
-    public BigDecimal calcular(Orcamento orcamento) {
-        return orcamento.getValor().multiply(aliquota);
-    }
+	public ISS(Imposto outro) {
+		super(outro);
+	}
+	
+	public BigDecimal realizarCalculoEspecifico(Orcamento orcamento) {
+		return orcamento.getValor().multiply(new BigDecimal("0.06"));
+	}
 
 }

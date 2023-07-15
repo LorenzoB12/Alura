@@ -1,15 +1,17 @@
 package br.com.busolli.lorenzo.patterns1.loja.imposto;
 
-import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
-
 import java.math.BigDecimal;
 
-public class ICMS implements Imposto{
+import br.com.busolli.lorenzo.patterns1.loja.orcamento.Orcamento;
 
-    private final BigDecimal aliquota = new BigDecimal("0.12");
+public class ICMS extends Imposto {
 
-    @Override
-    public BigDecimal calcular(Orcamento orcamento) {
-        return orcamento.getValor().multiply(aliquota);
-    }
+	public ICMS(Imposto outro) {
+		super(outro);
+	}
+
+	public BigDecimal realizarCalculoEspecifico(Orcamento orcamento) {
+		return orcamento.getValor().multiply(new BigDecimal("0.1"));
+	}
+
 }
