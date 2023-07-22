@@ -1,4 +1,4 @@
-package br.com.alura.leilao.login;
+package br.com.alura.leilao.login.testes;
 
 import br.com.alura.leilao.login.pageObject.PageLogin;
 import org.junit.Before;
@@ -25,7 +25,7 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Teste de login efetuado com sucesso")
+    @DisplayName("Login efetuado com sucesso")
     void test1(){
         pageLogin.efetuarLogin("fulano", "pass");
         assertEquals(pageLogin.getUrlAtual(), "http://localhost:8080/leiloes");
@@ -33,7 +33,7 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Teste de login incorreto")
+    @DisplayName("Login incorreto")
     void test2(){
         pageLogin.efetuarLogin("fulano", "passs");
         assertNull(pageLogin.getUsuarioAtual());
@@ -43,7 +43,7 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Teste de acesso a página de leilões sem estar logado")
+    @DisplayName("Acesso a página de leilões sem estar logado")
     void test3(){
         pageLogin.navigateToLeiloes();
         assertEquals(pageLogin.getUrlAtual(), "http://localhost:8080/login");
