@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class PageFormCadastroLeilao extends Page{
 
     public PageFormCadastroLeilao(WebDriver webDriver){
-        super.webDriver = webDriver;
+        super(webDriver);
     }
 
     public void cadastrarLeilao(String nomeLeilao, String valorInicial, String dataAbertura) {

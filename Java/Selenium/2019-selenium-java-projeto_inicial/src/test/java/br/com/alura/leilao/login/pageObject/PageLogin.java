@@ -10,8 +10,7 @@ public class PageLogin extends Page{
     private static final String URL_LOGIN = "http://localhost:8080/login";
 
     public PageLogin(){
-        System.setProperty("webdriver.chrome.driver", "C://Users/loren/Projetos/Alura/Java/Selenium/2019-selenium-java-projeto_inicial/src/test/drivers/chromedriver.exe");
-        super.webDriver = new ChromeDriver();
+        super(null);
         super.webDriver.navigate().to(URL_LOGIN);
     }
 

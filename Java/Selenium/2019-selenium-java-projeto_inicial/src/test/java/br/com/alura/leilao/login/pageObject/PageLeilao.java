@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class PageLeilao extends Page{
 
     public PageLeilao(WebDriver webDriver){
-        super.webDriver = webDriver;
+        super(webDriver);
     }
 
     public PageFormCadastroLeilao acessarFormCadastroLeilao() {
